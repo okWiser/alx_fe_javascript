@@ -178,4 +178,11 @@ function createExportQuotesButton() {
     exportButton.textContent = "Export Quotes";
     exportButton.addEventListener("click", exportToJsonFile);
     document.body.appendChild(exportButton);
+
+    // Include "Export Quotes" in the quotes array
+    const newQuote = {
+        text: "Export Quotes",
+        category: "Button",
+    };
+    quotes.push(newQuote);
 }
