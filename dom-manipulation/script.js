@@ -348,3 +348,48 @@ function handleConflicts(updatedQuotes) {
 // Verify that changes are correctly merged, conflicts are handled appropriately, and no data is lost during the sync process.
 
 // Testing and verification code goes here
+
+// Function to fetch quotes from the server using async/await
+async function fetchQuotesFromServer() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const data = await response.json();
+        quotes = data;
+        displayQuotes();
+    } catch (error) {
+        console.log("Error fetching quotes from server:", error);
+    }
+}
+
+// Simulate periodic data fetching from the server
+setInterval(fetchQuotesFromServer, 5000); // Fetch quotes every 5 seconds
+
+// Function to sync quotes with the server using async/await
+async function syncQuotesWithServer() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            body: JSON.stringify(quotes),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+        const data = await response.json();
+        quotes = data;
+        displayQuotes();
+    } catch (error) {
+        console.log("Error syncing quotes with server:", error);
+    }
+}
+
+// Simulate periodic syncing of quotes with the server
+setInterval(syncQuotesWithServer, 10000); // Sync quotes every 10 seconds
+
+// Function to handle conflicts and update the local quotes array using async/await
+async function handleConflicts(updatedQuotes) {
+    quotes = updatedQuotes;
+    displayQuotes();
+    console.log("Conflicts resolved. Quotes updated.");
+}
+
+// Testing and verification code goes here
