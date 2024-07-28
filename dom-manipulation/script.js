@@ -269,3 +269,82 @@ filterQuotes();
 const categoryFilter = "categoryFilter";
 restoreLastSelectedCategory(categoryFilter);
 const quoteDisplay = document.getElementById("quoteContainer");
+
+// Step 1: Simulate Server Interaction
+// Setup Server Simulation:
+// Use JSONPlaceholder or a similar mock API to simulate fetching and posting data.
+// Implement periodic data fetching to simulate receiving updates from a server.
+
+// Simulate fetching data from the server
+function fetchQuotesFromServer() {
+    // Simulate an API call to fetch quotes from the server
+    // Replace the URL with the actual API endpoint
+    fetch("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => response.json())
+        .then((data) => {
+            // Update the local quotes array with the fetched data
+            quotes = data;
+            // Display the updated quotes
+            displayQuotes();
+        })
+        .catch((error) => {
+            console.log("Error fetching quotes from server:", error);
+        });
+}
+
+// Simulate periodic data fetching from the server
+setInterval(fetchQuotesFromServer, 5000); // Fetch quotes every 5 seconds
+
+// Step 2: Implement Data Syncing
+// Data Syncing Logic:
+// Add functionality to periodically check for new quotes from the server and update the local storage accordingly.
+// Implement a simple conflict resolution strategy where the server’s data takes precedence in case of discrepancies.
+
+// Function to sync local quotes with the server
+function syncQuotesWithServer() {
+    // Simulate an API call to send the local quotes to the server
+    // Replace the URL with the actual API endpoint
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify(quotes),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Update the local quotes array with the response from the server
+            quotes = data;
+            // Display the updated quotes
+            displayQuotes();
+        })
+        .catch((error) => {
+            console.log("Error syncing quotes with server:", error);
+        });
+}
+
+// Simulate periodic syncing of quotes with the server
+setInterval(syncQuotesWithServer, 10000); // Sync quotes every 10 seconds
+
+// Step 3: Handling Conflicts
+// Conflict Resolution:
+// Add a UI element or notification system to inform users when data has been updated or if conflicts were resolved.
+// Provide an option for users to manually resolve conflicts if desired.
+
+// Function to handle conflicts and update the local quotes array
+function handleConflicts(updatedQuotes) {
+    // Compare the local quotes array with the updated quotes from the server
+    // and resolve any conflicts by updating the local quotes array accordingly
+    quotes = updatedQuotes;
+    // Display the updated quotes
+    displayQuotes();
+    // Show a notification or update the UI to inform the user about the conflict resolution
+    console.log("Conflicts resolved. Quotes updated.");
+}
+
+// Step 4: Testing and Verification
+// Ensure Comprehensive Testing:
+// Test the sync and conflict resolution functionalities thoroughly to ensure they work as expected.
+// Verify that changes are correctly merged, conflicts are handled appropriately, and no data is lost during the sync process.
+
+// Testing and verification code goes here
