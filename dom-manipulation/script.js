@@ -43,4 +43,8 @@ function addQuote() {
 
     // Display the updated quotes array
     console.log("Updated Quotes:", quotes);
+
+    // Update the HTML to display the new quote
+    const quoteContainer = document.getElementById("quoteContainer");
+    quoteContainer.innerHTML += `<p>${newQuote.text} - ${newQuote.category}</p>`;
 }
