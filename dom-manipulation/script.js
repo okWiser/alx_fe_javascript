@@ -268,3 +268,4 @@ populateCategoriesDropdown();
 filterQuotes();
 const categoryFilter = "categoryFilter";
 restoreLastSelectedCategory(categoryFilter);
+const quoteDisplay = document.getElementById("quoteContainer");
