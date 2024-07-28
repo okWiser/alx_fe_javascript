@@ -393,3 +393,6 @@ async function handleConflicts(updatedQuotes) {
 }
 
 // Testing and verification code goes here
+const headers = {
+    "Content-Type": "application/json"
+}; 
