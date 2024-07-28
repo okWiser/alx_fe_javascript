@@ -266,4 +266,5 @@ function restoreLastSelectedCategory() {
 createExportQuotesButton();
 populateCategoriesDropdown();
 filterQuotes();
-restoreLastSelectedCategory();
+const categoryFilter = "categoryFilter";
+restoreLastSelectedCategory(categoryFilter);
