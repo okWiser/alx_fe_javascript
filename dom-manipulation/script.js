@@ -189,4 +189,78 @@ function createExportQuotesButton() {
 }
 
 // Call the createExportQuotesButton function
+function createExportQuotesButton() {
+    // Create the export quotes button
+    const exportButton = document.createElement("button");
+    exportButton.setAttribute("type", "button");
+    exportButton.textContent = "Export Quotes";
+    exportButton.addEventListener("click", exportToJsonFile);
+    document.body.appendChild(exportButton);
+
+    // Include "Export Quotes" in the quotes array
+    const newQuote = {
+        text: "Export Quotes",
+        category: "Button",
+    };
+    quotes.push(newQuote);
+
+    // Populate categories dropdown
+    populateCategoriesDropdown();
+
+    // Filter quotes based on selected category
+    filterQuotes();
+
+    // Restore last selected category filter
+    restoreLastSelectedCategory();
+}
+
+// Function to populate categories dropdown
+function populateCategoriesDropdown() {
+    const categories = quotes.map(quote => quote.category);
+    const uniqueCategories = [...new Set(categories)];
+
+    const categoryDropdown = document.getElementById("categoryDropdown");
+    categoryDropdown.innerHTML = "";
+
+    uniqueCategories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categoryDropdown.appendChild(option);
+    });
+}
+
+// Function to filter quotes based on selected category
+function filterQuotes() {
+    const categoryDropdown = document.getElementById("categoryDropdown");
+    const selectedCategory = categoryDropdown.value;
+
+    const filteredQuotes = quotes.filter(quote => quote.category === selectedCategory);
+
+    const quoteContainer = document.getElementById("quoteContainer");
+    quoteContainer.innerHTML = "";
+
+    filteredQuotes.forEach(quote => {
+        quoteContainer.innerHTML += `<p>${quote.text} - ${quote.category}</p>`;
+    });
+
+    // Save last selected category filter
+    saveLastSelectedCategory(selectedCategory);
+}
+
+// Function to save last selected category filter
+function saveLastSelectedCategory(category) {
+    localStorage.setItem("lastSelectedCategory", category);
+}
+
+// Function to restore last selected category filter
+function restoreLastSelectedCategory() {
+    const lastSelectedCategory = localStorage.getItem("lastSelectedCategory");
+    if (lastSelectedCategory) {
+        const categoryDropdown = document.getElementById("categoryDropdown");
+        categoryDropdown.value = lastSelectedCategory;
+    }
+}
+
+// Call the createExportQuotesButton function
 createExportQuotesButton();
