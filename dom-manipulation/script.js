@@ -168,4 +168,14 @@ function importFromJsonFile(event) {
 window.addEventListener("load", function() {
     loadQuotes();
     displayQuotes();
+    createExportQuotesButton();
 });
+
+function createExportQuotesButton() {
+    // Create the export quotes button
+    const exportButton = document.createElement("button");
+    exportButton.setAttribute("type", "button");
+    exportButton.textContent = "Export Quotes";
+    exportButton.addEventListener("click", exportToJsonFile);
+    document.body.appendChild(exportButton);
+}
