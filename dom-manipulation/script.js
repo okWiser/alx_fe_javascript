@@ -264,3 +264,6 @@ function restoreLastSelectedCategory() {
 
 // Call the createExportQuotesButton function
 createExportQuotesButton();
+populateCategoriesDropdown();
+filterQuotes();
+restoreLastSelectedCategory();
