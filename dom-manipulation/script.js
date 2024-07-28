@@ -48,3 +48,32 @@ function addQuote() {
     const quoteContainer = document.getElementById("quoteContainer");
     quoteContainer.innerHTML += `<p>${newQuote.text} - ${newQuote.category}</p>`;
 }
+
+function createAddQuoteForm() {
+    // Create the form element
+    const form = document.createElement("form");
+
+    // Create the input field for quote text
+    const quoteTextInput = document.createElement("input");
+    quoteTextInput.setAttribute("type", "text");
+    quoteTextInput.setAttribute("id", "newQuoteText");
+    quoteTextInput.setAttribute("placeholder", "Enter quote text");
+    form.appendChild(quoteTextInput);
+
+    // Create the input field for quote category
+    const quoteCategoryInput = document.createElement("input");
+    quoteCategoryInput.setAttribute("type", "text");
+    quoteCategoryInput.setAttribute("id", "newQuoteCategory");
+    quoteCategoryInput.setAttribute("placeholder", "Enter quote category");
+    form.appendChild(quoteCategoryInput);
+
+    // Create the submit button
+    const submitButton = document.createElement("button");
+    submitButton.setAttribute("type", "button");
+    submitButton.textContent = "Add Quote";
+    submitButton.addEventListener("click", addQuote);
+    form.appendChild(submitButton);
+
+    // Append the form to the document body
+    document.body.appendChild(form);
+}
