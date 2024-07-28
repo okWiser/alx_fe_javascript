@@ -395,4 +395,17 @@ async function handleConflicts(updatedQuotes) {
 // Testing and verification code goes here
 const headers = {
     "Content-Type": "application/json"
-}; 
+const headers = {
+    "Content-Type": "application/json"
+};
+
+// Function to display a notification or update the UI when quotes are synced with the server
+function showSyncNotification() {
+    // Replace this with your actual notification or UI update logic
+    console.log("Quotes synced with server!");
+}
+
+// Call the showSyncNotification function after syncing quotes with the server
+syncQuotesWithServer().then(() => {
+    showSyncNotification();
+});
