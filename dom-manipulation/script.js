@@ -171,6 +171,7 @@ window.addEventListener("load", function() {
     createExportQuotesButton();
 });
 
+// Function to create the export quotes button
 function createExportQuotesButton() {
     // Create the export quotes button
     const exportButton = document.createElement("button");
@@ -186,3 +187,6 @@ function createExportQuotesButton() {
     };
     quotes.push(newQuote);
 }
+
+// Call the createExportQuotesButton function
+createExportQuotesButton();
